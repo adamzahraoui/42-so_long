@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 11:42:44 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/01/28 18:32:01 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/01/30 13:04:51 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ int check_map(char *argv)
     map.pos = 0;
     map.pist = 0;
     map.mostatil = 0;
+    map.find_C = 0;
+    map.find_E = 0;
     if(check_wals(argv, &map) == 1 && check_other(argv, &map) == 1 && check_mostatil(argv, &map) == 1)
     {
         if (flood_file(argv, &map) == 1)

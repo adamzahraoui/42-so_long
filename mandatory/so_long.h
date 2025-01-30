@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:46:17 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/01/28 18:14:16 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/01/30 13:03:42 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct so_long
     int y;
     int tol;
     int l3rd;
+    int find_C;
+    int find_E;
 }so_long_check;
 
 
@@ -50,6 +52,8 @@ int     ft_strlen_map(char *str);
 int     flood_file(char *argv, so_long_check *map);
 int     check_mostatil(char *argv, so_long_check *map);
 int     check_wals(char *argv, so_long_check *map);
+int     check_tri9(char **tri9, int x, int y, so_long_check *map);
+
 
 
 #endif

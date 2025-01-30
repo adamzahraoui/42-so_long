@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:24:27 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/01/28 19:19:41 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:36:51 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,23 @@ int ft_strlen_map(char *str)
 
 int position(char **str, so_long_check *map)
 {
-
     map->y = 0;
     while(str[map->y])
     {
         map->x = 0;
-        while(str[map->y][map->x])
-            if(str[map->y][map->x++] == 'P')
+        while(str[map->y][map->x++])
+            if(str[map->y][map->x] == 'P')
                 return (1);
         map->y++;    
     }
+    return (0);
+}
+
+int    free_map(char **str, so_long_check *map)
+{
+    while(map->y--)
+        free(str[map->y]);
+    free(str);
     return (0);
 }
 
@@ -43,20 +50,17 @@ int flood_file(char *argv, so_long_check *map)
     char *str;
     char **tri9;
 
-    map->fd = open(argv, O_RDONLY);
-    map->y = -1;
-    tri9 = malloc((map->l3rd + 1) * sizeof(char *));
-    if(!tri9)
+    (1)&&(map->fd = open(argv, O_RDONLY), map->y = -1);
+    if(!(tri9 = malloc((map->l3rd + 1) * sizeof(char *))))
         return (0);
-    str = get_next_line(map->fd);
-    if(!str)
+    if(!(str = get_next_line(map->fd)))
         return (close(map->fd), 0);
     while(str)
     {
-        i = 0;
-        map->x = 0;
+        (1)&&(i = 0, map->x = 0);
         map->y++;
-        tri9[map->y] = malloc(map->tol);
+        if(!(tri9[map->y] = malloc(map->tol)))
+            return(free_map(tri9,map));
         while(str[i] && str[i] != '\n')
             tri9[map->y][map->x++] = str[i++];
         tri9[map->y][map->x] = '\0';
@@ -64,7 +68,7 @@ int flood_file(char *argv, so_long_check *map)
         str = get_next_line(map->fd);
     }
     tri9[map->y] = NULL;
-    if(position(tri9, map) == 1)
-        return (close(map->fd), 1);
+    if(position(tri9, map) == 1 && check_tri9(tri9, map->x, map->y, map) == 1)
+        return (1);
     return (0);
 }
