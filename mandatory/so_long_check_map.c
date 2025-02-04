@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 11:42:44 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/01/30 13:04:51 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/02 11:17:57 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,47 +84,33 @@ int check_other(char *argv, so_long_check *map)
 int check_mostatil(char *argv, so_long_check *map)
 {
     char *str;
-    int len;
-    int y;
 
-    y = 0;
     map->fd = open(argv, O_RDONLY);
     str = get_next_line(map->fd);
     if(!str)
         return (0);
-    y++;
-    len = ft_strlen_map(str);
+    map->l3rd++;
+    map->tol = ft_strlen_map(str);
     str = get_next_line(map->fd);
-    y++;
+    map->l3rd++;
     while(str)
     {
-        if(len != ft_strlen_map(str))
+        if(map->tol != ft_strlen_map(str))
             return (close(map->fd), free(str), 0);
         str = get_next_line(map->fd);
-        y++;
+        map->l3rd++;
     }
-    map->l3rd = y;
-    map->tol = len;
-    if(y >= 3)
+    if(map->l3rd >= 3 && map->tol >= 3)
         return(close(map->fd), free(str), 1);
     return (close(map->fd), free(str), 0);
 }
 
-int check_map(char *argv)
+int check_map(char *argv , so_long_check *map)
 {
-    so_long_check map;
-    
-    map.wals = 0;
-    map.lbab = 0;
-    map.makla = 0;
-    map.pos = 0;
-    map.pist = 0;
-    map.mostatil = 0;
-    map.find_C = 0;
-    map.find_E = 0;
-    if(check_wals(argv, &map) == 1 && check_other(argv, &map) == 1 && check_mostatil(argv, &map) == 1)
+
+    if(check_wals(argv, map) == 1 && check_other(argv, map) == 1 && check_mostatil(argv, map) == 1)
     {
-        if (flood_file(argv, &map) == 1)
+        if (flood_file(argv, map) == 1)
             return (1);
         return (0);
     }
