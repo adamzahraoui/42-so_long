@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:46:17 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/04 09:58:59 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/05 10:11:13 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,17 @@ typedef struct so_long
     int l3rd;
     int find_C;
     int find_E;
-}so_long_check;
-
-typedef struct window
-{
     void	*mlx;
 	void	*mlx_win;
     void    *wall;
     void    *ground;
     void    *player;
+    void    *player_left;
     void    *coin;
     void    *exit;
-} game;
+    char    **str;
+    char    **str_copy;
+} so_long_check;
 
 
 char	*get_next_line(int fd);
@@ -62,7 +61,7 @@ int     flood_file(char *argv, so_long_check *map);
 int     check_mostatil(char *argv, so_long_check *map);
 int     check_wals(char *argv, so_long_check *map);
 int     check_tri9(char **tri9, int x, int y, so_long_check *map);
-void    set_window(char *argv, so_long_check *map);
+void    set_window(so_long_check *map);
 
 
 

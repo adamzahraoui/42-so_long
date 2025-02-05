@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:46:11 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/02 11:44:14 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/05 10:53:22 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ int main(int argc, char **argv)
     map.find_E = 0;
     map.l3rd = 0;
     map.tol = 0;
+
     if(argc == 2)
     {
         if(check_map(argv[1], &map) == 0)
             printf("error map invaled\n");
         else
-           set_window(argv[1], &map);
+           set_window(&map);
     }
     else
         printf("Error: select one map\n");

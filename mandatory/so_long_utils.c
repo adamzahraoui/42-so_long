@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:24:27 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/02 10:43:05 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/05 10:56:00 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,31 +44,52 @@ int    free_map(char **str, so_long_check *map)
     return (0);
 }
 
+void    copy_map(so_long_check *map)
+{
+    int y;
+    int i;
+
+    y = 0;
+    i = 0;
+    map->str_copy = malloc((map->l3rd + 1) * sizeof(char *));
+    while(map->str[y])
+    {
+        i = 0;
+        map->str_copy[y] = malloc(map->tol + 1);
+        while(map->str[y][i])
+        {
+            map->str_copy[y][i] = map->str[y][i];
+            i++;
+        }
+        y++;
+    }
+}
+
 int flood_file(char *argv, so_long_check *map)
 {
     int i;
     char *str;
-    char **tri9;
 
-    (1)&&(map->fd = open(argv, O_RDONLY), map->y = -1);
-    if(!(tri9 = malloc((map->l3rd + 1) * sizeof(char *))))
+    (1)&&(map->fd = open(argv, O_RDONLY), map->y = 0);
+    if(!(map->str = malloc((map->l3rd + 1) * sizeof(char *))))
         return (0);
     if(!(str = get_next_line(map->fd)))
         return (close(map->fd), 0);
     while(str)
     {
         (1)&&(i = 0, map->x = 0);
-        map->y++;
-        if(!(tri9[map->y] = malloc(map->tol)))
-            return(free_map(tri9,map));
+        if(!(map->str[map->y] = malloc(map->tol)))
+            return(free_map(map->str,map));
         while(str[i] && str[i] != '\n')
-            tri9[map->y][map->x++] = str[i++];
-        tri9[map->y][map->x] = '\0';
+            map->str[map->y][map->x++] = str[i++];
+        map->str[map->y][map->x] = '\0';
         free(str);
+        map->y++;
         str = get_next_line(map->fd);
     }
-    tri9[map->y] = NULL;
-    if(position(tri9, map) == 1 && check_tri9(tri9, map->x, map->y, map) == 1)
+    map->str[map->y] = NULL;
+    copy_map(map);
+    if(position(map->str, map) == 1 && check_tri9(map->str_copy, map->x, map->y, map) == 1)
         return (1);
     return (0);
 }
