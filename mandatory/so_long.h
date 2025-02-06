@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:46:17 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/05 10:11:13 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:36:41 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include "/home/adzahrao/Desktop/so_long/printf/ft_printf.h"
 #include "/usr/include/minilibx-linux/mlx.h"
 
 #  define BUFFER_SIZE 42
@@ -36,6 +37,10 @@ typedef struct so_long
     int l3rd;
     int find_C;
     int find_E;
+    int pos_E_x;
+    int pos_E_y;
+    int pos_EX;
+    int pos_EY;
     void	*mlx;
 	void	*mlx_win;
     void    *wall;
@@ -46,6 +51,25 @@ typedef struct so_long
     void    *exit;
     char    **str;
     char    **str_copy;
+    int     move;
+
+    int width;
+    int height;
+
+    int width_g;
+    int height_g;
+
+    int width_p;
+    int height_p;
+
+    int width_l;
+    int height_l;
+
+    int width_c;
+    int height_c;
+
+    int width_e;
+    int height_e;
 } so_long_check;
 
 
@@ -62,7 +86,11 @@ int     check_mostatil(char *argv, so_long_check *map);
 int     check_wals(char *argv, so_long_check *map);
 int     check_tri9(char **tri9, int x, int y, so_long_check *map);
 void    set_window(so_long_check *map);
-
-
+void	ft_putnbr(int nb);
+void    up(so_long_check *data);
+void    right(so_long_check *data);
+void    left(so_long_check *data);
+void    down(so_long_check *data);
+int     close_map(so_long_check *close);
 
 #endif

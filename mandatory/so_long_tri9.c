@@ -6,11 +6,37 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 11:03:36 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/01/30 13:05:26 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:32:02 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	ft_putchar_ft(char c)
+{
+	write(1, &c, 1);
+}
+
+void	ft_putnbr(int nb)
+{
+	if (nb == -2147483648)
+		write(1, "-2147483648", 11);
+	else if (nb >= 0 && nb <= 9)
+	{
+		ft_putchar_ft(nb + '0');
+	}
+	else if (nb > 9)
+	{
+		ft_putnbr(nb / 10);
+		ft_putnbr(nb % 10);
+	}
+	else
+	{
+		nb *= -1;
+		write(1, "-", 1);
+		ft_putnbr(nb);
+	}
+}
 
 int check_tri9(char **tri9, int x, int y, so_long_check *map)
 {

@@ -9,7 +9,10 @@ SRC= mandatory/main.c \
 	mandatory/so_long_check_map.c \
 	mandatory/so_long_tri9.c \
 	mandatory/so_long_utils.c \
-	mandatory/set_window.c
+	mandatory/set_window.c \
+	mandatory/click_move.c \
+	printf/ft_printf.c \
+	printf/ft_printf_ft.c
 
 OBJ= $(SRC:.c=.o)
 
