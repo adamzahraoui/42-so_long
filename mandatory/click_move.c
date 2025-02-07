@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 11:14:59 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/06 19:19:37 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/07 14:07:35 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,20 @@
 void	up(so_long_check *data)
 {
 	if ((data->str[data->y - 1][data->x] == '0' || data->str[data->y
-			- 1][data->x] == 'C' || data->str[data->y - 1][data->x] == 'E')
+		- 1][data->x] == 'C' || data->str[data->y - 1][data->x] == 'E')
 		&& data->makla > 0)
 	{
 		if (data->str[data->y - 1][data->x] == 'C')
-		{
 			data->makla--;
-			data->str[data->y - 1][data->x] = '0';
-		}
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->ground,
 			(data->x) * 32, (data->y) * 32);
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->player,
-			(data->x) * 32, (data->y - 1) * 32);
+			(data->x) * 32, (data->y-- - 1) * 32);
 		ft_printf("%d\n", data->move++);
-		data->y--;
 	}
 	else if ((data->str[data->y - 1][data->x] == '0' || data->str[data->y
-			- 1][data->x] == 'E') && data->makla <= 0)
+		- 1][data->x] == 'E') && data->makla <= 0)
 	{
-		if (data->str[data->y - 1][data->x] == 'E')
-			data->lbab--;
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->ground,
 			(data->x) * 32, (data->y) * 32);
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->player,
@@ -51,22 +45,16 @@ void	right(so_long_check *data)
 		&& data->makla > 0)
 	{
 		if (data->str[data->y][data->x + 1] == 'C')
-		{
 			data->makla--;
-			data->str[data->y][data->x + 1] = '0';
-		}
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->ground,
 			(data->x) * 32, (data->y) * 32);
-		mlx_put_image_to_window(data->mlx, data->mlx_win, data->player, (data->x
+		mlx_put_image_to_window(data->mlx, data->mlx_win, data->player, (data->x++
 				+ 1) * 32, (data->y) * 32);
 		ft_printf("%d\n", data->move++);
-		data->x++;
 	}
 	else if ((data->str[data->y][data->x + 1] == '0'
-			|| data->str[data->y][data->x + 1] == 'E') && data->makla <= 0)
+		|| data->str[data->y][data->x + 1] == 'E') && data->makla == 0)
 	{
-		if (data->str[data->y][data->x + 1] == 'E')
-			data->lbab--;
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->ground,
 			(data->x) * 32, (data->y) * 32);
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->player, (data->x
@@ -79,14 +67,11 @@ void	right(so_long_check *data)
 void	down(so_long_check *data)
 {
 	if ((data->str[data->y + 1][data->x] == '0' || data->str[data->y
-			+ 1][data->x] == 'C' || data->str[data->y + 1][data->x] == 'E')
+		+ 1][data->x] == 'C' || data->str[data->y + 1][data->x] == 'E')
 		&& data->makla > 0)
 	{
 		if (data->str[data->y + 1][data->x] == 'C')
-		{
 			data->makla--;
-			data->str[data->y + 1][data->x] = '0';
-		}
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->ground,
 			(data->x) * 32, (data->y) * 32);
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->player,
@@ -95,14 +80,13 @@ void	down(so_long_check *data)
 		ft_printf("%d\n", data->move++);
 	}
 	else if ((data->str[data->y + 1][data->x] == '0' || data->str[data->y
-			+ 1][data->x] == 'E') && data->makla <= 0)
+			+ 1][data->x] == 'E') && data->makla == 0)
 	{
-		if (data->str[data->y][data->x - 1] == 'E')
-			data->lbab--;
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->ground,
 			(data->x) * 32, (data->y) * 32);
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->player,
-			(data->x) * 32, (data->y + 1) * 32);
+			(data->x) * 32, (data->y + 1)
+			 * 32);
 		data->str[data->y++][data->x] = '0';
 		ft_printf("%d\n", data->move++);
 	}
@@ -111,26 +95,20 @@ void	down(so_long_check *data)
 void	left(so_long_check *data)
 {
 	if ((data->str[data->y][data->x - 1] == '0' || data->str[data->y][data->x
-			- 1] == 'C' || data->str[data->y][data->x - 1] == 'E')
+		- 1] == 'C' || data->str[data->y][data->x - 1] == 'E')
 		&& data->makla > 0)
 	{
 		if (data->str[data->y][data->x - 1] == 'C')
-		{
 			data->makla--;
-			data->str[data->y][data->x - 1] = '0';
-		}
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->ground,
 			(data->x) * 32, (data->y) * 32);
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->player_left,
-			(data->x - 1) * 32, (data->y) * 32);
+			(data->x-- - 1) * 32, (data->y) * 32);
 		ft_printf("%d\n", data->move++);
-		data->x--;
 	}
 	else if ((data->str[data->y][data->x - 1] == '0'
-			|| data->str[data->y][data->x - 1] == 'E') && data->makla <= 0)
+		|| data->str[data->y][data->x - 1] == 'E') && data->makla == 0)
 	{
-		if (data->str[data->y][data->x - 1] == 'E')
-			data->lbab--;
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->ground,
 			(data->x) * 32, (data->y) * 32);
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->player_left,

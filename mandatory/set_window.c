@@ -15,7 +15,22 @@
 int	close_map(so_long_check *close)
 {
 	printf("you win !!");
+	if (close->wall != NULL)
+		mlx_destroy_image(close->mlx, close->wall);
+	if (close->ground != NULL)
+		mlx_destroy_image(close->mlx, close->ground);
+	if (close->player != NULL)
+		mlx_destroy_image(close->mlx, close->player);
+	if (close->player_left != NULL)
+		mlx_destroy_image(close->mlx, close->player_left);
+	if (close->coin != NULL)
+		mlx_destroy_image(close->mlx, close->coin);
+	if (close->exit != NULL)
+		mlx_destroy_image(close->mlx, close->exit);
 	mlx_destroy_window(close->mlx, close->mlx_win);
+	mlx_destroy_display(close->mlx);
+	free(close->mlx);
+	free_free(close);
 	exit(0);
 	return (0);
 }
@@ -24,13 +39,13 @@ void	booton_close(int key, so_long_check *close)
 	if (key == 65307)
 	{
 		printf("ESC pressed. Closing map...\n");
-		mlx_destroy_window(close->mlx, close->mlx_win);
+		close_map(close);
 		exit(0);
 	}
 	else if (key == 120)
 	{
 		printf("X pressed. Closing map...\n");
-		mlx_destroy_window(close->mlx, close->mlx_win);
+		close_map(close);
 		exit(0);
 	}
 }
@@ -54,7 +69,8 @@ int	key_press(int keycode, so_long_check *data)
 	if (data->makla <= 0)
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->exit,
 			data->pos_EX, data->pos_EY);
-	if (data->lbab <= 0)
+	if (data->makla == 0 && data->y == data->pos_E_y
+		&& data->x == data->pos_E_x)
 		close_map(data);
 	return (0);
 }
@@ -71,6 +87,11 @@ void	set_window(so_long_check *map)
 	map->mlx = NULL;
 	map->mlx_win = NULL;
 	map->wall = NULL;
+	map->ground = NULL;
+	map->coin = NULL;
+	map->player = NULL;
+	map->player_left = NULL;
+	map->exit = NULL;
 	map->mlx = mlx_init();
 	map->mlx_win = mlx_new_window(map->mlx, map->tol * 32, (map->l3rd - 1) * 32,
 			"so_long");
@@ -122,7 +143,7 @@ void	set_window(so_long_check *map)
 		y += 32;
 		z++;
 	}
-	mlx_hook(map->mlx_win, 2, 1L << 0, key_press, map);
+	mlx_hook(map->mlx_win, 2, 1, key_press, map);
 	mlx_hook(map->mlx_win, 17, 0, close_map, map);
 	mlx_loop(map->mlx);
 }

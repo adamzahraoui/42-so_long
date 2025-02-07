@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:24:27 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/06 20:57:55 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/07 11:27:15 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,11 @@ int	position(char **str, so_long_check *map)
 
 int	free_map(char **str, so_long_check *map)
 {
-	while (map->y--)
-		free(str[map->y]);
+	int	map_y;
+
+	map_y = map->y;
+	while (map_y--)
+		free(str[map_y]);
 	free(str);
 	return (0);
 }
@@ -52,17 +55,28 @@ void	copy_map(so_long_check *map)
 	y = 0;
 	i = 0;
 	map->str_copy = malloc((map->l3rd + 1) * sizeof(char *));
+	if (!map->str_copy)
+		return ;
 	while (map->str[y])
 	{
 		i = 0;
 		map->str_copy[y] = malloc(map->tol + 1);
+		if (!map->str_copy)
+		{
+			while (y--)
+				free(map->str_copy[y]);
+			free(map->str_copy);
+			return ;
+		}
 		while (map->str[y][i])
 		{
 			map->str_copy[y][i] = map->str[y][i];
 			i++;
 		}
+		map->str_copy[y][i] = '\0';
 		y++;
 	}
+	map->str_copy[y] = NULL;
 }
 
 int	flood_file(char *argv, so_long_check *map)
@@ -72,14 +86,14 @@ int	flood_file(char *argv, so_long_check *map)
 
 	(1) && (map->fd = open(argv, O_RDONLY), map->y = 0, i = 0);
 	if (!(map->str = malloc((map->l3rd + 1) * sizeof(char *))))
-		return (0);
-	if (!(str = get_next_line(map->fd)))
 		return (close(map->fd), 0);
+	if (!(str = get_next_line(map->fd)))
+		return (close(map->fd), free(map->str), 0);
 	while (str)
 	{
 		(1) && (i = 0, map->x = 0);
 		if (!(map->str[map->y] = malloc(map->tol + 1)))
-			return (free_map(map->str, map));
+			return (free(str), free_map(map->str, map));
 		while (str[i] && str[i] != '\n')
 			map->str[map->y][map->x++] = str[i++];
 		map->str[map->y][map->x] = '\0';
@@ -91,6 +105,6 @@ int	flood_file(char *argv, so_long_check *map)
 	copy_map(map);
 	if (position(map->str, map) == 1 && check_tri9(map->str_copy, map->x,
 			map->y, map) == 1)
-		return (1);
-	return (0);
+		return (close(map->fd), 1);
+	return (close(map->fd), 0);
 }

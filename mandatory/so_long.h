@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:46:17 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/06 15:36:41 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/07 11:28:50 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ void		right(so_long_check *data);
 void		left(so_long_check *data);
 void		down(so_long_check *data);
 int			close_map(so_long_check *close);
+void	*free_free(so_long_check *map);
 
 #endif

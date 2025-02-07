@@ -6,11 +6,26 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:46:11 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/05 10:53:22 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/07 11:32:44 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	*free_free(so_long_check *map)
+{
+	int	i;
+
+	i = map->l3rd;
+	while (i--)
+	{
+		free(map->str[i]);
+		free(map->str_copy[i]);
+	}
+	free(map->str_copy);
+	free(map->str);
+	return (NULL);
+}
 
 int	main(int argc, char **argv)
 {
@@ -29,10 +44,17 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		if (check_map(argv[1], &map) == 0)
+		{
 			printf("error map invaled\n");
+			return (free_free(&map), 1);
+		}
 		else
+		{
 			set_window(&map);
+			return (free_free(&map), 1);
+		}
 	}
 	else
 		printf("Error: select one map\n");
+	return (1);
 }

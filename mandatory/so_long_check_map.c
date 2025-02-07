@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 11:42:44 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/02 11:17:57 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/07 11:28:21 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ int	check_wals(char *argv, so_long_check *map)
 	char	*str;
 	int		i;
 
-	i = 0;
-	map->fd = open(argv, O_RDONLY);
-	str = get_next_line(map->fd);
+	(1) && (i = 0, map->fd = open(argv, O_RDONLY),
+		str = get_next_line(map->fd));
 	if (!str)
 		return (close(map->fd), 0);
 	while (str[i] != '\0' && str[i] != '\n')
 		if (str[i++] != '1')
-			return (close(map->fd), free(str), 0);
+			return (free(str), close(map->fd), 0);
+	free(str);
 	str = get_next_line(map->fd);
 	while (str != NULL)
 	{
@@ -47,37 +47,41 @@ int	check_wals(char *argv, so_long_check *map)
 			i++;
 		if (str[i] == '\0')
 			i = -1;
+		free(str);
 		str = get_next_line(map->fd);
 	}
 	if (i == -1)
-		return (close(map->fd), 1);
-	return (close(map->fd), 0);
+		return (free(str), close(map->fd), 1);
+	return (free(str), close(map->fd), 0);
 }
 
 int	check_other(char *argv, so_long_check *map)
 {
 	char	*str;
+	int		i;
 
-	map->fd = open(argv, O_RDONLY);
-	str = get_next_line(map->fd);
+	(1) && (i = 0, map->fd = open(argv, O_RDONLY),
+		str = get_next_line(map->fd));
 	if (!str)
 		return (close(map->fd), 0);
 	while (str)
 	{
-		while (*str && *str != '\n')
+		i = 0;
+		while (str[i] && str[i] != '\n')
 		{
-			if (*str == 'C')
+			if (str[i] == 'C')
 				map->makla++;
-			if (*str == 'E')
+			if (str[i] == 'E')
 				map->lbab++;
-			if (*str == 'P')
+			if (str[i] == 'P')
 				map->pos++;
-			(str)++;
+			i++;
 		}
+		free(str);
 		str = get_next_line(map->fd);
 	}
 	if (map->lbab == 1 && map->makla != 0 && map->pos == 1)
-		return (close(map->fd), free(str), 1);
+		return (close(map->fd), 1);
 	return (close(map->fd), 0);
 }
 
@@ -91,12 +95,14 @@ int	check_mostatil(char *argv, so_long_check *map)
 		return (0);
 	map->l3rd++;
 	map->tol = ft_strlen_map(str);
+	free(str);
 	str = get_next_line(map->fd);
 	map->l3rd++;
 	while (str)
 	{
 		if (map->tol != ft_strlen_map(str))
 			return (close(map->fd), free(str), 0);
+		free(str);
 		str = get_next_line(map->fd);
 		map->l3rd++;
 	}
@@ -112,6 +118,7 @@ int	check_map(char *argv, so_long_check *map)
 	{
 		if (flood_file(argv, map) == 1)
 			return (1);
+		free_free(map);
 		return (0);
 	}
 	return (0);
