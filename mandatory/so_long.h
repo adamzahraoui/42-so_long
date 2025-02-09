@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:46:17 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/07 11:28:50 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/09 20:21:46 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,9 @@ typedef struct so_long
 
 	int		width_e;
 	int		height_e;
+
+	int z;
+	int w;
 }			so_long_check;
 
 char		*get_next_line(int fd);
@@ -91,6 +94,7 @@ void		right(so_long_check *data);
 void		left(so_long_check *data);
 void		down(so_long_check *data);
 int			close_map(so_long_check *close);
-void	*free_free(so_long_check *map);
+void		*free_free(so_long_check *map);
+void		set_pic(char c, so_long_check *map, int x, int y);
 
 #endif

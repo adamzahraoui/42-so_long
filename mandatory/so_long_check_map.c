@@ -108,7 +108,8 @@ int	check_mostatil(char *argv, so_long_check *map)
 	}
 	if (map->l3rd >= 3 && map->tol >= 3)
 		return (close(map->fd), free(str), 1);
-	return (ft_printf("Error :The map must be rectangular\n"), close(map->fd), free(str), 0);
+	return (ft_printf("Error :The map must be rectangular\n"), close(map->fd),
+		free(str), 0);
 }
 
 int	check_map(char *argv, so_long_check *map)

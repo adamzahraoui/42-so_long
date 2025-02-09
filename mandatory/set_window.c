@@ -34,6 +34,7 @@ int	close_map(so_long_check *close)
 	exit(0);
 	return (0);
 }
+
 void	booton_close(int key, so_long_check *close)
 {
 	if (key == 65307)
@@ -77,9 +78,9 @@ int	key_press(int keycode, so_long_check *data)
 
 void	declaration(so_long_check *map)
 {
-	so_long_check data;
+	so_long_check	data;
 
-	(1) && (map->move = 1,map->mlx = NULL);
+	(1) && (map->move = 1, map->mlx = NULL);
 	map->mlx_win = NULL;
 	map->wall = NULL;
 	map->ground = NULL;
@@ -106,47 +107,25 @@ void	declaration(so_long_check *map)
 
 void	set_window(so_long_check *map)
 {
-	int				x;
-	int				y;
-	int				z;
-	int				w;
+	int	x;
+	int	y;
 
 	declaration(map);
 	x = 0;
 	y = 0;
-	z = 0;
-	while (map->str[z])
+	map->z = 0;
+	while (map->str[map->z])
 	{
-		w = 0;
+		map->w = 0;
 		x = 0;
-		while (map->str[z][w])
+		while (map->str[map->z][map->w])
 		{
-			if (map->str[z][w] == '1')
-				mlx_put_image_to_window(map->mlx, map->mlx_win, map->wall, x,
-					y);
-			if (map->str[z][w] == '0')
-				mlx_put_image_to_window(map->mlx, map->mlx_win, map->ground, x,
-					y);
-			if (map->str[z][w] == 'P')
-				mlx_put_image_to_window(map->mlx, map->mlx_win, map->player, x,
-					y);
-			if (map->str[z][w] == 'C')
-				mlx_put_image_to_window(map->mlx, map->mlx_win, map->coin, x,
-					y);
-			if (map->str[z][w] == 'E')
-			{
-				mlx_put_image_to_window(map->mlx, map->mlx_win, map->ground, x,
-					y);
-				map->pos_E_x = w;
-				map->pos_E_y = z;
-				map->pos_EX = x;
-				map->pos_EY = y;
-			}
+			set_pic(map->str[map->z][map->w], map, x, y);
 			x += 32;
-			w++;
+			map->w++;
 		}
 		y += 32;
-		z++;
+		map->z++;
 	}
 	mlx_hook(map->mlx_win, 2, 1, key_press, map);
 	mlx_hook(map->mlx_win, 17, 0, close_map, map);

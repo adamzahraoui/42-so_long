@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:46:11 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/09 14:09:18 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/09 20:24:29 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ void	*free_free(so_long_check *map)
 	return (NULL);
 }
 
-int check_extention(char *argv)
+int	check_extention(char *argv)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(argv[i])
+	while (argv[i])
 		i++;
-	if(argv[i - 1] == 'r' && argv[i - 2] == 'e' && argv[i - 3] == 'b' 
-		&& argv[i - 4] == '.' && argv[i - 5] != '/' && i > 4)
+	if (argv[i - 1] == 'r' && argv[i - 2] == 'e' && argv[i - 3] == 'b' && argv[i
+			- 4] == '.' && argv[i - 5] != '/' && i > 4)
 		return (1);
-	return (ft_printf("The map name must end in .ber") ,0);
+	return (ft_printf("The map name must end in .ber"), 0);
 }
 
 int	main(int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 11:03:36 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/06 15:32:02 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/09 20:21:30 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,24 @@ int	check_tri9(char **tri9, int x, int y, so_long_check *map)
 	check_tri9(tri9, x, y - 1, map);
 	check_tri9(tri9, x, y + 1, map);
 	return (map->find_C == map->makla && map->find_E == map->lbab);
+}
+
+void	set_pic(char c, so_long_check *map, int x, int y)
+{
+	if (c == '1')
+		mlx_put_image_to_window(map->mlx, map->mlx_win, map->wall, x, y);
+	if (c == '0')
+		mlx_put_image_to_window(map->mlx, map->mlx_win, map->ground, x, y);
+	if (c == 'P')
+		mlx_put_image_to_window(map->mlx, map->mlx_win, map->player, x, y);
+	if (c == 'C')
+		mlx_put_image_to_window(map->mlx, map->mlx_win, map->coin, x, y);
+	if (c == 'E')
+	{
+		mlx_put_image_to_window(map->mlx, map->mlx_win, map->ground, x, y);
+		map->pos_E_x = map->w;
+		map->pos_E_y = map->z;
+		map->pos_EX = x;
+		map->pos_EY = y;
+	}
 }
