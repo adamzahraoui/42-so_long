@@ -75,16 +75,11 @@ int	key_press(int keycode, so_long_check *data)
 	return (0);
 }
 
-void	set_window(so_long_check *map)
+void	declaration(so_long_check *map)
 {
-	so_long_check	data;
-	int				x;
-	int				y;
-	int				z;
-	int				w;
+	so_long_check data;
 
-	map->move = 1;
-	map->mlx = NULL;
+	(1) && (map->move = 1,map->mlx = NULL);
 	map->mlx_win = NULL;
 	map->wall = NULL;
 	map->ground = NULL;
@@ -107,6 +102,16 @@ void	set_window(so_long_check *map)
 			&data.width_c, &data.height_c);
 	map->exit = mlx_xpm_file_to_image(map->mlx, "./picture/exit.xpm",
 			&data.width_e, &data.height_e);
+}
+
+void	set_window(so_long_check *map)
+{
+	int				x;
+	int				y;
+	int				z;
+	int				w;
+
+	declaration(map);
 	x = 0;
 	y = 0;
 	z = 0;
