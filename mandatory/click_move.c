@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 11:14:59 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/07 14:07:35 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/07 18:00:06 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	up(so_long_check *data)
 		&& data->makla > 0)
 	{
 		if (data->str[data->y - 1][data->x] == 'C')
-			data->makla--;
+			(1) && (data->str[data->y - 1][data->x] = '0', data->makla--);
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->ground,
 			(data->x) * 32, (data->y) * 32);
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->player,
@@ -45,7 +45,7 @@ void	right(so_long_check *data)
 		&& data->makla > 0)
 	{
 		if (data->str[data->y][data->x + 1] == 'C')
-			data->makla--;
+			(1) && (data->str[data->y][data->x + 1] = '0', data->makla--);
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->ground,
 			(data->x) * 32, (data->y) * 32);
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->player, (data->x++
@@ -71,7 +71,7 @@ void	down(so_long_check *data)
 		&& data->makla > 0)
 	{
 		if (data->str[data->y + 1][data->x] == 'C')
-			data->makla--;
+			(1) && (data->str[data->y + 1][data->x] = '0', data->makla--);
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->ground,
 			(data->x) * 32, (data->y) * 32);
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->player,
@@ -99,7 +99,7 @@ void	left(so_long_check *data)
 		&& data->makla > 0)
 	{
 		if (data->str[data->y][data->x - 1] == 'C')
-			data->makla--;
+			(1) && (data->str[data->y][data->x - 1] = '0', data->makla--);
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->ground,
 			(data->x) * 32, (data->y) * 32);
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->player_left,

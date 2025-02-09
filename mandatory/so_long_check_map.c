@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 11:42:44 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/07 11:28:21 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/09 14:10:30 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int	check_mostatil(char *argv, so_long_check *map)
 	}
 	if (map->l3rd >= 3 && map->tol >= 3)
 		return (close(map->fd), free(str), 1);
-	return (close(map->fd), free(str), 0);
+	return (ft_printf("Error :The map must be rectangular\n"), close(map->fd), free(str), 0);
 }
 
 int	check_map(char *argv, so_long_check *map)

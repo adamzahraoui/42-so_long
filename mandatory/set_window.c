@@ -14,7 +14,7 @@
 
 int	close_map(so_long_check *close)
 {
-	printf("you win !!");
+	ft_printf("you win !!");
 	if (close->wall != NULL)
 		mlx_destroy_image(close->mlx, close->wall);
 	if (close->ground != NULL)
@@ -38,13 +38,13 @@ void	booton_close(int key, so_long_check *close)
 {
 	if (key == 65307)
 	{
-		printf("ESC pressed. Closing map...\n");
+		ft_printf("ESC pressed. Closing game...\n");
 		close_map(close);
 		exit(0);
 	}
 	else if (key == 120)
 	{
-		printf("X pressed. Closing map...\n");
+		ft_printf("X pressed. Closing game...\n");
 		close_map(close);
 		exit(0);
 	}
