@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:46:17 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/10 11:02:05 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/10 11:23:29 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@
 # include <unistd.h>
 
 # define BUFFER_SIZE 42
+# define PICTURE_WALL "./picture/wall.xpm"
+# define PICTURE_GROUND "./picture/ground.xpm"
+# define PICTURE_PLAYER_R "./picture/right.xpm"
+# define PICTURE_PLAYER_L "./picture/left.xpm"
+# define PICTURE_COIN "./picture/coin.xpm"
+# define PICTURE_EXIT "./picture/exit.xpm" 
 
 typedef struct s_so_long
 {
