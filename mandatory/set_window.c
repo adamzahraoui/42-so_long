@@ -14,7 +14,6 @@
 
 int	close_map(t_so_long_check *close)
 {
-	ft_printf("you win !!");
 	if (close->wall != NULL)
 		mlx_destroy_image(close->mlx, close->wall);
 	if (close->ground != NULL)
@@ -31,6 +30,9 @@ int	close_map(t_so_long_check *close)
 	mlx_destroy_display(close->mlx);
 	free(close->mlx);
 	free_free(close);
+	if (close->eat == 0 && close->y == close->pos_e_y
+		&& close->x == close->pos_e_x)
+		ft_printf("you win !!");
 	exit(0);
 	return (0);
 }
