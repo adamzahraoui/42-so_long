@@ -37,6 +37,7 @@ export SO_LONG
 CC= cc
 CFLAGS= -Wall -Wextra -Werror
 NAME= so_long
+BNAME= so_long_v2
 RM= rm -f
 MFLAGS= -lmlx -L/usr/include/minilibx-linux/ -lXext -lX11
 SRC= mandatory/main.c \
@@ -50,7 +51,20 @@ SRC= mandatory/main.c \
 	printf/ft_printf.c \
 	printf/ft_printf_ft.c
 
+BSRC = bonus/main.c \
+	bonus/get_next_line_utils.c \
+	bonus/get_next_line.c \
+	bonus/so_long_check_map.c \
+	bonus/so_long_path.c \
+	bonus/so_long_utils.c \
+	bonus/set_window.c \
+	bonus/click_move.c \
+	printf/ft_printf.c \
+	printf/ft_printf_ft.c \
+	bonus/display.c
+
 OBJ= $(SRC:.c=.o)
+BOBJ= $(BSRC:.c=.o)
 
 all: $(NAME)
 	@echo "$$SO_LONG"
@@ -61,13 +75,19 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) $(MFLAGS) -o $(NAME)
 
+%.o: %.c bonus/so_long_bonus.h
+	@$(CC) $(CFLAGS) -Imlx -c $< -o $@
+
+bonus : $(BOBJ)
+	@$(CC) $(CFLAGS) $(BOBJ) $(MFLAGS) -o $(BNAME)
+	@touch bonus
+
 clean:
-	@$(RM) $(OBJ)
+	@$(RM) $(OBJ) $(BOBJ)
 
 fclean: clean
-	@$(RM) $(NAME)
+	@$(RM) $(NAME) $(BNAME)
 
 re : fclean all
 
 .PHONY: clean fclean re all
-

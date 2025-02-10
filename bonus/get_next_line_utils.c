@@ -1,117 +1,70 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 23:15:00 by adzahrao          #+#    #+#             */
-/*   Updated: 2024/11/26 05:17:30 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/10 12:14:36 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "so_long_bonus.h"
 
-char	*chyata(char *last)
+size_t	ft_strlen(const char *str)
 {
 	size_t	i;
-	size_t	j;
-	char	*p;
 
-	if (!last)
-		return (NULL);
 	i = 0;
-	while (last[i] != '\0' && last[i] != '\n')
+	while (str[i] != '\0')
 		i++;
-	if (last[i] == '\n')
-		i++;
-	if (last[i] == '\0')
-		return (free(last), NULL);
-	p = malloc(ft_strlen(last) - i + 1);
-	if (!p)
-		return (free(last), NULL);
-	j = 0;
-	while (last[i])
-		p[j++] = last[i++];
-	p[j] = '\0';
-	free(last);
-	return (p);
+	return (i);
 }
 
-char	*line_buffer(int fd, char *last)
+char	*ft_strchr(const char *s, int c)
 {
-	char	*buffer;
-	char	*temp;
-	ssize_t	len;
+	char	*p;
+	char	d;
+	size_t	i;
 
-	buffer = malloc(BUFFER_SIZE + 1);
-	if (!buffer)
-		return (free(last), NULL);
-	len = 1;
-	while (!ft_strchr(last, '\n') && len != 0)
+	p = (char *)s;
+	d = (char)c;
+	i = 0;
+	while (p[i] != '\0')
 	{
-		len = read(fd, buffer, BUFFER_SIZE);
-		if (len < 0)
-			return (free(buffer), free(last), NULL);
-		buffer[len] = '\0';
-		temp = ft_strjoin(last, buffer);
-		free(last);
-		if (!temp)
-			return (free(buffer), NULL);
-		last = temp;
+		if (p[i] == d)
+			return (&p[i]);
+		i++;
 	}
-	free(buffer);
-	return (last);
+	if (d == '\0')
+		return (&p[i]);
+	return (NULL);
 }
 
-char	*line_n9i(char *last)
+char	*ft_strjoin(const char *dest, const char *src)
 {
+	char	*p;
 	size_t	i;
 	size_t	j;
-	char	*p;
 
-	if (!last)
+	if (!dest || !src)
 		return (NULL);
 	i = 0;
-	while (last[i] != '\0' && last[i] != '\n')
-		i++;
-	if (last[i] == '\n')
-		i++;
-	p = malloc(i + 1);
+	j = 0;
+	p = malloc(ft_strlen((char *)dest) + ft_strlen((char *)src) + 1);
 	if (!p)
 		return (NULL);
-	j = 0;
-	while (j < i)
+	while (dest[i] != '\0')
 	{
-		p[j] = last[j];
+		p[i] = dest[i];
+		i++;
+	}
+	while (src[j] != '\0')
+	{
+		p[i + j] = src[j];
 		j++;
 	}
-	p[j] = '\0';
+	p[i + j] = '\0';
 	return (p);
-}
-
-char	*get_next_line(int fd)
-{
-	static char	*last;
-	char		*line;
-
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	if (!last)
-	{
-		last = malloc(1);
-		if (!last)
-			return (NULL);
-		last[0] = '\0';
-	}
-	last = line_buffer(fd, last);
-	if (!last)
-		return (NULL);
-	if (!*last)
-		return ((free(last), last = NULL), NULL);
-	line = line_n9i(last);
-	if (!line)
-		return ((free(last), last = NULL), NULL);
-	last = chyata(last);
-	return (line);
 }

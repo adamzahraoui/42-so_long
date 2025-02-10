@@ -6,11 +6,11 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 23:15:00 by adzahrao          #+#    #+#             */
-/*   Updated: 2024/11/26 05:17:30 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/10 12:14:39 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "so_long_bonus.h"
 
 char	*chyata(char *last)
 {
@@ -90,7 +90,7 @@ char	*line_n9i(char *last)
 	return (p);
 }
 
-char	*get_next_line(int fd)
+char	*get(int fd)
 {
 	static char	*last;
 	char		*line;
