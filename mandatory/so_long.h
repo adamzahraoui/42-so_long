@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:46:17 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/10 10:31:31 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/10 11:02:05 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ typedef struct s_so_long
 {
 	int		wals;
 	int		fd;
-	int		makla;
-	int		lbab;
+	int		eat;
+	int		door;
 	int		pos;
 	int		pist;
-	int		mostatil;
+	int		rectangular;
 	int		x;
 	int		y;
 	int		tol;
@@ -83,12 +83,12 @@ char		*ft_strchr(const char *s, int c);
 size_t		ft_strlen(const char *str);
 int			main(int argc, char **argv);
 int			check_map(char *argv, t_so_long_check *map);
-int			check_l7it(char *wals);
+int			check_walls(char *wals);
 int			ft_strlen_map(char *str);
 int			flood_file(char *argv, t_so_long_check *map);
-int			check_mostatil(char *argv, t_so_long_check *map);
+int			check_rectangular(char *argv, t_so_long_check *map);
 int			check_wals(char *argv, t_so_long_check *map);
-int			check_tri9(char **tri9, int x, int y, t_so_long_check *map);
+int			check_path(char **tri9, int x, int y, t_so_long_check *map);
 void		set_window(t_so_long_check *map);
 void		ft_putnbr(int nb);
 void		up(t_so_long_check *data);

@@ -67,10 +67,10 @@ int	key_press(int keycode, t_so_long_check *data)
 		down(data);
 	else if (keycode == 97 || keycode == 65361)
 		left(data);
-	if (data->makla <= 0)
+	if (data->eat <= 0)
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->exit,
 			data->pos_ex, data->pos_ey);
-	if (data->makla == 0 && data->y == data->pos_e_y
+	if (data->eat == 0 && data->y == data->pos_e_y
 		&& data->x == data->pos_e_x)
 		close_map(data);
 	return (0);

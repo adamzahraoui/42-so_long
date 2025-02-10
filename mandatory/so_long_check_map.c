@@ -6,13 +6,13 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 11:42:44 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/10 10:27:07 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/10 11:00:04 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	check_l7it(char *wals)
+int	check_walls(char *wals)
 {
 	int	i;
 
@@ -39,7 +39,7 @@ int	check_wals(char *argv, t_so_long_check *map)
 	while (str != NULL)
 	{
 		map->i = 0;
-		if (check_l7it(str) == 0)
+		if (check_walls(str) == 0)
 			return (free(str), close(map->fd), 0);
 		while (str[map->i] == '1' && str[map->i] != '\n' && str[map->i])
 			map->i++;
@@ -68,21 +68,21 @@ int	check_other(char *argv, t_so_long_check *map)
 		while (str[i] && str[i] != '\n')
 		{
 			if (str[i] == 'C')
-				map->makla++;
+				map->eat++;
 			if (str[i] == 'E')
-				map->lbab++;
+				map->door++;
 			if (str[i++] == 'P')
 				map->pos++;
 		}
 		free(str);
 		str = get(map->fd);
 	}
-	if (map->lbab == 1 && map->makla != 0 && map->pos == 1)
+	if (map->door == 1 && map->eat != 0 && map->pos == 1)
 		return (close(map->fd), 1);
 	return (close(map->fd), 0);
 }
 
-int	check_mostatil(char *argv, t_so_long_check *map)
+int	check_rectangular(char *argv, t_so_long_check *map)
 {
 	char	*str;
 
@@ -112,7 +112,7 @@ int	check_mostatil(char *argv, t_so_long_check *map)
 int	check_map(char *argv, t_so_long_check *map)
 {
 	if (check_wals(argv, map) == 1 && check_other(argv, map) == 1
-		&& check_mostatil(argv, map) == 1)
+		&& check_rectangular(argv, map) == 1)
 	{
 		if (flood_file(argv, map) == 1)
 			return (1);

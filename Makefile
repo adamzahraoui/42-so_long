@@ -7,7 +7,7 @@ SRC= mandatory/main.c \
 	mandatory/get_next_line_utils.c \
 	mandatory/get_next_line.c \
 	mandatory/so_long_check_map.c \
-	mandatory/so_long_tri9.c \
+	mandatory/so_long_path.c \
 	mandatory/so_long_utils.c \
 	mandatory/set_window.c \
 	mandatory/click_move.c \

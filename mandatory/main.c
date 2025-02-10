@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:46:11 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/10 10:39:01 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/10 10:55:15 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ int	check_extention(char *argv)
 
 void	print_error(t_so_long_check *map)
 {
-	if (map->lbab != 1)
-		ft_printf("Error : There is no exit on the map\n");
-	if (map->makla == 0)
+	if (map->door != 1)
+		ft_printf("Error : There should be one exit on the map\n");
+	if (map->eat == 0)
 		ft_printf("Error : There is no collectible on the map\n");
 	if (map->pos != 1)
-		ft_printf("Error : There is no player on the map\n");
+		ft_printf("Error : There must be one player on the map\n");
 }
 
 int	main(int argc, char **argv)
@@ -55,11 +55,11 @@ int	main(int argc, char **argv)
 	t_so_long_check	map;
 
 	map.wals = 0;
-	map.lbab = 0;
-	map.makla = 0;
+	map.door = 0;
+	map.eat = 0;
 	map.pos = 0;
 	map.pist = 0;
-	map.mostatil = 0;
+	map.rectangular = 0;
 	map.find_c = 0;
 	map.find_e = 0;
 	map.l3rd = 0;

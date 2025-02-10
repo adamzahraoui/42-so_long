@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 11:03:36 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/10 10:27:26 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/10 11:02:23 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_putnbr(int nb)
 	}
 }
 
-int	check_tri9(char **tri9, int x, int y, t_so_long_check *map)
+int	check_path(char **tri9, int x, int y, t_so_long_check *map)
 {
 	if (x < 0 || y < 0 || tri9[y] == NULL || tri9[y][x] == '1'
 		|| tri9[y][x] == 'F')
@@ -48,11 +48,11 @@ int	check_tri9(char **tri9, int x, int y, t_so_long_check *map)
 	if (tri9[y][x] == 'E')
 		map->find_e++;
 	tri9[y][x] = 'F';
-	check_tri9(tri9, x - 1, y, map);
-	check_tri9(tri9, x + 1, y, map);
-	check_tri9(tri9, x, y - 1, map);
-	check_tri9(tri9, x, y + 1, map);
-	return (map->find_c == map->makla && map->find_e == map->lbab);
+	check_path(tri9, x - 1, y, map);
+	check_path(tri9, x + 1, y, map);
+	check_path(tri9, x, y - 1, map);
+	check_path(tri9, x, y + 1, map);
+	return (map->find_c == map->eat && map->find_e == map->door);
 }
 
 void	set_pic(char c, t_so_long_check *map, int x, int y)
