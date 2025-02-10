@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 23:15:00 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/02 10:51:08 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/10 10:20:28 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ char	*line_n9i(char *last)
 	return (p);
 }
 
-char	*get_next_line(int fd)
+char	*get(int fd)
 {
 	static char	*last;
 	char		*line;

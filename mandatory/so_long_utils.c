@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:24:27 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/07 11:27:15 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/10 10:32:17 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_strlen_map(char *str)
 	return (i);
 }
 
-int	position(char **str, so_long_check *map)
+int	position(char **str, t_so_long_check *map)
 {
 	map->y = 0;
 	while (str[map->y])
@@ -36,7 +36,7 @@ int	position(char **str, so_long_check *map)
 	return (0);
 }
 
-int	free_map(char **str, so_long_check *map)
+int	free_map(char **str, t_so_long_check *map)
 {
 	int	map_y;
 
@@ -47,7 +47,7 @@ int	free_map(char **str, so_long_check *map)
 	return (0);
 }
 
-void	copy_map(so_long_check *map)
+void	copy_map(t_so_long_check *map)
 {
 	int	y;
 	int	i;
@@ -63,9 +63,7 @@ void	copy_map(so_long_check *map)
 		map->str_copy[y] = malloc(map->tol + 1);
 		if (!map->str_copy)
 		{
-			while (y--)
-				free(map->str_copy[y]);
-			free(map->str_copy);
+			free_free_map(map, y);
 			return ;
 		}
 		while (map->str[y][i])
@@ -73,33 +71,31 @@ void	copy_map(so_long_check *map)
 			map->str_copy[y][i] = map->str[y][i];
 			i++;
 		}
-		map->str_copy[y][i] = '\0';
-		y++;
+		map->str_copy[y++][i] = '\0';
 	}
 	map->str_copy[y] = NULL;
 }
 
-int	flood_file(char *argv, so_long_check *map)
+int	flood_file(char *argv, t_so_long_check *map)
 {
-	int		i;
 	char	*str;
 
-	(1) && (map->fd = open(argv, O_RDONLY), map->y = 0, i = 0);
-	if (!(map->str = malloc((map->l3rd + 1) * sizeof(char *))))
+	(1) && (map->fd = open(argv, O_RDONLY), map->y = 0, map->a = 0);
+	map->str = malloc((map->l3rd + 1) * sizeof(char *));
+	if (!map->str)
 		return (close(map->fd), 0);
-	if (!(str = get_next_line(map->fd)))
-		return (close(map->fd), free(map->str), 0);
+	str = get(map->fd);
 	while (str)
 	{
-		(1) && (i = 0, map->x = 0);
-		if (!(map->str[map->y] = malloc(map->tol + 1)))
+		(1) && (map->a = 0, map->x = 0);
+		map->str[map->y] = malloc(map->tol + 1);
+		if (!map->str[map->y])
 			return (free(str), free_map(map->str, map));
-		while (str[i] && str[i] != '\n')
-			map->str[map->y][map->x++] = str[i++];
-		map->str[map->y][map->x] = '\0';
+		while (str[map->a] && str[map->a] != '\n')
+			map->str[map->y][map->x++] = str[map->a++];
+		map->str[map->y++][map->x] = '\0';
 		free(str);
-		map->y++;
-		str = get_next_line(map->fd);
+		str = get(map->fd);
 	}
 	map->str[map->y] = NULL;
 	copy_map(map);

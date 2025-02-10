@@ -6,13 +6,13 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:46:11 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/09 20:24:29 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/10 10:39:01 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	*free_free(so_long_check *map)
+void	*free_free(t_so_long_check *map)
 {
 	int	i;
 
@@ -40,9 +40,19 @@ int	check_extention(char *argv)
 	return (ft_printf("The map name must end in .ber"), 0);
 }
 
+void	print_error(t_so_long_check *map)
+{
+	if (map->lbab != 1)
+		ft_printf("Error : There is no exit on the map\n");
+	if (map->makla == 0)
+		ft_printf("Error : There is no collectible on the map\n");
+	if (map->pos != 1)
+		ft_printf("Error : There is no player on the map\n");
+}
+
 int	main(int argc, char **argv)
 {
-	so_long_check	map;
+	t_so_long_check	map;
 
 	map.wals = 0;
 	map.lbab = 0;
@@ -50,19 +60,16 @@ int	main(int argc, char **argv)
 	map.pos = 0;
 	map.pist = 0;
 	map.mostatil = 0;
-	map.find_C = 0;
-	map.find_E = 0;
+	map.find_c = 0;
+	map.find_e = 0;
 	map.l3rd = 0;
 	map.tol = 0;
 	if (argc == 2)
 	{
 		if (check_map(argv[1], &map) == 0 || check_extention(argv[1]) == 0)
-			return (1);
+			return (print_error(&map), 1);
 		else
-		{
-			set_window(&map);
-			return (free_free(&map), 1);
-		}
+			return (set_window(&map), free_free(&map), 1);
 	}
 	else
 		printf("Error: select one map\n");

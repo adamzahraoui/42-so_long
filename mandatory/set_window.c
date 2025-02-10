@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-int	close_map(so_long_check *close)
+int	close_map(t_so_long_check *close)
 {
 	ft_printf("you win !!");
 	if (close->wall != NULL)
@@ -35,7 +35,7 @@ int	close_map(so_long_check *close)
 	return (0);
 }
 
-void	booton_close(int key, so_long_check *close)
+void	booton_close(int key, t_so_long_check *close)
 {
 	if (key == 65307)
 	{
@@ -51,7 +51,7 @@ void	booton_close(int key, so_long_check *close)
 	}
 }
 
-int	key_press(int keycode, so_long_check *data)
+int	key_press(int keycode, t_so_long_check *data)
 {
 	if (data->str[data->y][data->x] == 'P')
 		data->str[data->y][data->x] = '0';
@@ -69,16 +69,16 @@ int	key_press(int keycode, so_long_check *data)
 		left(data);
 	if (data->makla <= 0)
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->exit,
-			data->pos_EX, data->pos_EY);
-	if (data->makla == 0 && data->y == data->pos_E_y
-		&& data->x == data->pos_E_x)
+			data->pos_ex, data->pos_ey);
+	if (data->makla == 0 && data->y == data->pos_e_y
+		&& data->x == data->pos_e_x)
 		close_map(data);
 	return (0);
 }
 
-void	declaration(so_long_check *map)
+void	declaration(t_so_long_check *map)
 {
-	so_long_check	data;
+	t_so_long_check	data;
 
 	(1) && (map->move = 1, map->mlx = NULL);
 	map->mlx_win = NULL;
@@ -105,7 +105,7 @@ void	declaration(so_long_check *map)
 			&data.width_e, &data.height_e);
 }
 
-void	set_window(so_long_check *map)
+void	set_window(t_so_long_check *map)
 {
 	int	x;
 	int	y;
