@@ -58,8 +58,7 @@ int	check_other(char *argv, t_so_long_check *map)
 	char	*str;
 	int		i;
 
-	(1) && (i = 0, map->fd = open(argv, O_RDONLY),
-		str = get(map->fd));
+	(1) && (i = 0, map->fd = open(argv, O_RDONLY), str = get(map->fd));
 	if (!str)
 		return (close(map->fd), 0);
 	while (str)

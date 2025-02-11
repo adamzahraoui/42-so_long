@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:46:11 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/10 10:55:15 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/11 20:30:28 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,31 @@ void	print_error(t_so_long_check *map)
 		ft_printf("Error : There must be one player on the map\n");
 }
 
+int	check_map_numeric(t_so_long_check *map)
+{
+	int	i;
+	int	y;
+
+	y = 0;
+	while (map->str[y])
+	{
+		i = 0;
+		while (map->str[y][i])
+		{
+			if (map->str[y][i] != '1' && map->str[y][i] != '0'
+				&& map->str[y][i] != 'P' && map->str[y][i] != 'C'
+				&& map->str[y][i] != 'E')
+			{
+				ft_printf("Error :The map contains an unknown item\n");
+				return (0);
+			}
+			i++;
+		}
+		y++;
+	}
+	return (1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_so_long_check	map;
@@ -66,7 +91,8 @@ int	main(int argc, char **argv)
 	map.tol = 0;
 	if (argc == 2)
 	{
-		if (check_map(argv[1], &map) == 0 || check_extention(argv[1]) == 0)
+		if (check_map(argv[1], &map) == 0 || check_extention(argv[1]) == 0
+			|| check_map_numeric(&map) == 0)
 			return (print_error(&map), 1);
 		else
 			return (set_window(&map), free_free(&map), 1);

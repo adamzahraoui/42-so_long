@@ -6,14 +6,14 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:46:17 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/10 12:18:37 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/11 20:35:38 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_BONUS_H
 # define SO_LONG_BONUS_H
 
-# include "/home/adzahrao/Desktop/so_long/printf/ft_printf.h"
+# include "ft_printf.h"
 # include "/usr/include/minilibx-linux/mlx.h"
 # include <fcntl.h>
 # include <stdio.h>

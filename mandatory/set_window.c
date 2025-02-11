@@ -72,8 +72,7 @@ int	key_press(int keycode, t_so_long_check *data)
 	if (data->eat <= 0)
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->exit,
 			data->pos_ex, data->pos_ey);
-	if (data->eat == 0 && data->y == data->pos_e_y
-		&& data->x == data->pos_e_x)
+	if (data->eat == 0 && data->y == data->pos_e_y && data->x == data->pos_e_x)
 		close_map(data);
 	return (0);
 }
@@ -93,18 +92,18 @@ void	declaration(t_so_long_check *map)
 	map->mlx = mlx_init();
 	map->mlx_win = mlx_new_window(map->mlx, map->tol * 32, (map->l3rd - 1) * 32,
 			"so_long");
-	map->wall = mlx_xpm_file_to_image(map->mlx, PICTURE_WALL,
-			&data.width, &data.height);
-	map->ground = mlx_xpm_file_to_image(map->mlx, PICTURE_GROUND,
-			&data.width_g, &data.height_g);
+	map->wall = mlx_xpm_file_to_image(map->mlx, PICTURE_WALL, &data.width,
+			&data.height);
+	map->ground = mlx_xpm_file_to_image(map->mlx, PICTURE_GROUND, &data.width_g,
+			&data.height_g);
 	map->player = mlx_xpm_file_to_image(map->mlx, PICTURE_PLAYER_R,
 			&data.width_p, &data.height_p);
 	map->player_left = mlx_xpm_file_to_image(map->mlx, PICTURE_PLAYER_L,
 			&data.width_l, &data.height_l);
-	map->coin = mlx_xpm_file_to_image(map->mlx, PICTURE_COIN,
-			&data.width_c, &data.height_c);
-	map->exit = mlx_xpm_file_to_image(map->mlx, PICTURE_EXIT,
-			&data.width_e, &data.height_e);
+	map->coin = mlx_xpm_file_to_image(map->mlx, PICTURE_COIN, &data.width_c,
+			&data.height_c);
+	map->exit = mlx_xpm_file_to_image(map->mlx, PICTURE_EXIT, &data.width_e,
+			&data.height_e);
 }
 
 void	set_window(t_so_long_check *map)

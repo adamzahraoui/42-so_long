@@ -48,8 +48,8 @@ SRC= mandatory/main.c \
 	mandatory/so_long_utils.c \
 	mandatory/set_window.c \
 	mandatory/click_move.c \
-	printf/ft_printf.c \
-	printf/ft_printf_ft.c
+	mandatory/ft_printf.c \
+	mandatory/ft_printf_ft.c
 
 BSRC = bonus/main.c \
 	bonus/get_next_line_utils.c \
@@ -59,8 +59,8 @@ BSRC = bonus/main.c \
 	bonus/so_long_utils.c \
 	bonus/set_window.c \
 	bonus/click_move.c \
-	printf/ft_printf.c \
-	printf/ft_printf_ft.c \
+	bonus/ft_printf.c \
+	bonus/ft_printf_ft.c \
 	bonus/display.c
 
 OBJ= $(SRC:.c=.o)
