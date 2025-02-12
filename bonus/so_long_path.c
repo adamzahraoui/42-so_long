@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 11:03:36 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/10 12:50:10 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/12 10:01:49 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_putnbr(int nb)
 int	check_path(char **paath, int x, int y, t_so_long_check *map)
 {
 	if (x < 0 || y < 0 || paath[y] == NULL || paath[y][x] == '1'
-		|| paath[y][x] == 'F')
+		|| paath[y][x] == 'F' || paath[y][x] == 'L')
 		return (0);
 	if (paath[y][x] == 'C')
 		map->find_c++;
@@ -73,6 +73,8 @@ void	set_pic(char c, t_so_long_check *map, int x, int y)
 		map->pos_ex = x;
 		map->pos_ey = y;
 	}
+	if (c == 'L')
+		mlx_put_image_to_window(map->mlx, map->mlx_win, map->enemy, x, y);
 }
 
 void	free_free_map(t_so_long_check *map, int i)

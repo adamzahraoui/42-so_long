@@ -61,7 +61,8 @@ BSRC = bonus/main.c \
 	bonus/click_move.c \
 	bonus/ft_printf.c \
 	bonus/ft_printf_ft.c \
-	bonus/display.c
+	bonus/display.c \
+	bonus/enemy.c
 
 OBJ= $(SRC:.c=.o)
 BOBJ= $(BSRC:.c=.o)

@@ -6,15 +6,15 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:46:17 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/11 20:35:38 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/12 10:39:01 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_BONUS_H
 # define SO_LONG_BONUS_H
 
-# include "ft_printf.h"
 # include "/usr/include/minilibx-linux/mlx.h"
+# include "ft_printf.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -27,6 +27,7 @@
 # define PICTURE_PLAYER_L "./picture/left.xpm"
 # define PICTURE_COIN "./picture/coin.xpm"
 # define PICTURE_EXIT "./picture/exit.xpm"
+# define PICTURE_ENEMY_R "./picture/enemy_right.xpm"
 
 typedef struct s_so_long
 {
@@ -55,6 +56,8 @@ typedef struct s_so_long
 	void	*player_left;
 	void	*coin;
 	void	*exit;
+	void	*enemy;
+	void	*enemy_l;
 	char	**str;
 	char	**str_copy;
 	int		move;
@@ -78,6 +81,12 @@ typedef struct s_so_long
 
 	int		width_e;
 	int		height_e;
+
+	int		width_ene;
+	int		height_ene;
+
+	int		width_ene_l;
+	int		height_ene_l;
 
 	int		z;
 	int		w;
@@ -106,5 +115,10 @@ void		*free_free(t_so_long_check *map);
 void		set_pic(char c, t_so_long_check *map, int x, int y);
 void		free_free_map(t_so_long_check *map, int i);
 void		display_move(t_so_long_check *data);
+int			close_x(t_so_long_check *map);
+void		enemy_left(t_so_long_check *data);
+void		enemy_right(t_so_long_check *data);
+void		enemy_up(t_so_long_check *data);
+void		enemy_down(t_so_long_check *data);
 
 #endif
