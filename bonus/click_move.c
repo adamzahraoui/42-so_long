@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 11:14:59 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/12 10:52:37 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/12 10:59:26 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,6 @@ void	down(t_so_long_check *data)
 			|| data->str[data->y + 1][data->x] == 'L') && data->eat > 0)
 	{
 		enemy_down(data);
-		if (data->str[data->y + 1][data->x] == 'C')
-			(1) && (data->str[data->y + 1][data->x] = '0', data->eat--);
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->ground,
 			(data->x) * 32, (data->y) * 32);
 		mlx_put_image_to_window(data->mlx, data->mlx_win, data->player,

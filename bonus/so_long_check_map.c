@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 11:42:44 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/10 12:14:48 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/12 11:05:10 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ int	check_map(char *argv, t_so_long_check *map)
 	{
 		if (flood_file(argv, map) == 1)
 			return (1);
+		ft_printf("Error :The map is invalid\n");
 		free_free(map);
 		return (0);
 	}
