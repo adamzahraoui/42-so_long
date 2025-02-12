@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:46:17 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/12 10:39:01 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:33:11 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@
 # define PICTURE_COIN "./picture/coin.xpm"
 # define PICTURE_EXIT "./picture/exit.xpm"
 # define PICTURE_ENEMY_R "./picture/enemy_right.xpm"
+
+# define PICTURE_F1 "./picture/1.xpm"
+# define PICTURE_F2 "./picture/2.xpm"
+# define PICTURE_F3 "./picture/3.xpm"
+# define PICTURE_F4 "./picture/4.xpm"
+# define PICTURE_F5 "./picture/5.xpm"
+# define PICTURE_F6 "./picture/6.xpm"
 
 typedef struct s_so_long
 {
@@ -64,6 +71,13 @@ typedef struct s_so_long
 	int		i;
 	int		a;
 
+	void	*f1;
+	void	*f2;
+	void	*f3;
+	void	*f4;
+	void	*f5;
+	void	*f6;
+
 	int		width;
 	int		height;
 
@@ -87,6 +101,9 @@ typedef struct s_so_long
 
 	int		width_ene_l;
 	int		height_ene_l;
+
+	int		width_f;
+	int		height_f;
 
 	int		z;
 	int		w;
@@ -120,5 +137,9 @@ void		enemy_left(t_so_long_check *data);
 void		enemy_right(t_so_long_check *data);
 void		enemy_up(t_so_long_check *data);
 void		enemy_down(t_so_long_check *data);
+void		set_image_frame(t_so_long_check *map);
+int			animate_frames(t_so_long_check *map);
+void		close_frame(t_so_long_check *close);
+
 
 #endif

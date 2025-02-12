@@ -33,6 +33,7 @@ int	close_map(t_so_long_check *close)
 		mlx_destroy_image(close->mlx, close->enemy);
 	if (close->enemy_l != NULL)
 		mlx_destroy_image(close->mlx, close->enemy_l);
+	close_frame(close);
 	mlx_destroy_window(close->mlx, close->mlx_win);
 	mlx_destroy_display(close->mlx);
 	return (free(close->mlx), free_free(close), exit(0), 0);
@@ -55,6 +56,7 @@ int	close_x(t_so_long_check *close)
 		mlx_destroy_image(close->mlx, close->exit);
 	if (close->enemy != NULL)
 		mlx_destroy_image(close->mlx, close->enemy);
+	close_frame(close);
 	mlx_destroy_window(close->mlx, close->mlx_win);
 	mlx_destroy_display(close->mlx);
 	return (free(close->mlx), free_free(close), exit(0), 0);
@@ -94,7 +96,8 @@ void	declaration(t_so_long_check *map)
 	(1) && (map->mlx_win = NULL, map->wall = NULL, map->ground = NULL,
 		map->coin = NULL, map->player = NULL, map->player_left = NULL,
 		map->exit = NULL, map->enemy = NULL, map->enemy_l = NULL,
-		map->mlx = mlx_init());
+		map->f1 = NULL, map->f2 = NULL, map->f3 = NULL, map->f4 = NULL,
+		map->f5 = NULL, map->f6 = NULL, map->mlx = mlx_init());
 	map->mlx_win = mlx_new_window(map->mlx, map->tol * 32, (map->l3rd - 1) * 32,
 			"so_long");
 	map->wall = mlx_xpm_file_to_image(map->mlx, PICTURE_WALL, &data.width,
@@ -111,6 +114,7 @@ void	declaration(t_so_long_check *map)
 			&data.height_e);
 	map->enemy = mlx_xpm_file_to_image(map->mlx, PICTURE_ENEMY_R, &data.width_e,
 			&data.height_e);
+	set_image_frame(map);
 }
 
 void	set_window(t_so_long_check *map)
@@ -119,9 +123,7 @@ void	set_window(t_so_long_check *map)
 	int	y;
 
 	declaration(map);
-	x = 0;
-	y = 0;
-	map->z = 0;
+	(1) && (x = 0, y = 0, map->z = 0);
 	while (map->str[map->z])
 	{
 		map->w = 0;
@@ -137,5 +139,6 @@ void	set_window(t_so_long_check *map)
 	}
 	mlx_hook(map->mlx_win, 2, 1, key_press, map);
 	mlx_hook(map->mlx_win, 17, 0, close_x, map);
+	mlx_loop_hook(map->mlx, animate_frames, map);
 	mlx_loop(map->mlx);
 }
