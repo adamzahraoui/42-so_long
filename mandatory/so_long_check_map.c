@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 11:42:44 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/10 11:00:04 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/12 11:33:15 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,11 @@ int	check_other(char *argv, t_so_long_check *map)
 int	check_rectangular(char *argv, t_so_long_check *map)
 {
 	char	*str;
+	int		x;
 
-	map->fd = open(argv, O_RDONLY);
-	str = get(map->fd);
+	(1) && (map->fd = open(argv, O_RDONLY), str = get(map->fd), x = 1);
 	if (!str)
-		return (0);
+		return (close(map->fd), 0);
 	map->l3rd++;
 	map->tol = ft_strlen_map(str);
 	free(str);
@@ -97,12 +97,12 @@ int	check_rectangular(char *argv, t_so_long_check *map)
 	while (str)
 	{
 		if (map->tol != ft_strlen_map(str))
-			return (close(map->fd), free(str), 0);
+			x = 0;
 		free(str);
 		str = get(map->fd);
 		map->l3rd++;
 	}
-	if (map->l3rd >= 3 && map->tol >= 3)
+	if (map->l3rd >= 3 && map->tol >= 3 && x == 1)
 		return (close(map->fd), free(str), 1);
 	return (ft_printf("Error :The map must be rectangular\n"), close(map->fd),
 		free(str), 0);
