@@ -14,6 +14,9 @@
 
 int	close_map(t_so_long_check *close)
 {
+	if (close->eat == 0 && close->y == close->pos_e_y
+		&& close->x == close->pos_e_x)
+		ft_printf("you win :)");
 	if (close->wall != NULL)
 		mlx_destroy_image(close->mlx, close->wall);
 	if (close->ground != NULL)
@@ -30,37 +33,40 @@ int	close_map(t_so_long_check *close)
 	mlx_destroy_display(close->mlx);
 	free(close->mlx);
 	free_free(close);
-	if (close->eat == 0 && close->y == close->pos_e_y
-		&& close->x == close->pos_e_x)
-		ft_printf("you win !!");
 	exit(0);
 	return (0);
 }
 
-void	booton_close(int key, t_so_long_check *close)
+int	close_x(t_so_long_check *close)
 {
-	if (key == 65307)
-	{
-		ft_printf("ESC pressed. Closing game...\n");
-		close_map(close);
-		exit(0);
-	}
-	else if (key == 120)
-	{
-		ft_printf("X pressed. Closing game...\n");
-		close_map(close);
-		exit(0);
-	}
+	ft_printf("Closing game...\n");
+	if (close->wall != NULL)
+		mlx_destroy_image(close->mlx, close->wall);
+	if (close->ground != NULL)
+		mlx_destroy_image(close->mlx, close->ground);
+	if (close->player != NULL)
+		mlx_destroy_image(close->mlx, close->player);
+	if (close->player_left != NULL)
+		mlx_destroy_image(close->mlx, close->player_left);
+	if (close->coin != NULL)
+		mlx_destroy_image(close->mlx, close->coin);
+	if (close->exit != NULL)
+		mlx_destroy_image(close->mlx, close->exit);
+	mlx_destroy_window(close->mlx, close->mlx_win);
+	mlx_destroy_display(close->mlx);
+	return (free(close->mlx), free_free(close), exit(0), 0);
 }
 
 int	key_press(int keycode, t_so_long_check *data)
 {
+	if (keycode == 65307)
+	{
+		ft_printf("ESC pressed. Closing game...\n");
+		close_map(data);
+		exit(0);
+	}
 	if (data->str[data->y][data->x] == 'P')
 		data->str[data->y][data->x] = '0';
-	if (keycode == 65307)
-		booton_close(keycode, data);
-	else if (keycode == 120)
-		booton_close(keycode, data);
 	else if (keycode == 119 || keycode == 65362)
 		up(data);
 	else if (keycode == 100 || keycode == 65363)
@@ -129,6 +135,6 @@ void	set_window(t_so_long_check *map)
 		map->z++;
 	}
 	mlx_hook(map->mlx_win, 2, 1, key_press, map);
-	mlx_hook(map->mlx_win, 17, 0, close_map, map);
+	mlx_hook(map->mlx_win, 17, 0, close_x, map);
 	mlx_loop(map->mlx);
 }
