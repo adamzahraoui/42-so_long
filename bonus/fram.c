@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:40:09 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/12 15:07:46 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/14 15:02:20 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	animate_frames(t_so_long_check *map)
 	void		*frame_to_display;
 
 	(1) && (map->c = 0, map->d = 0);
-	if (frame_count++ >= 20000)
+	if (frame_count++ >= 15000)
 	{
 		while (map->str[map->d])
 		{

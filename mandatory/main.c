@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:46:11 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/11 20:30:28 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/14 14:53:21 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	main(int argc, char **argv)
 	{
 		if (check_map(argv[1], &map) == 0 || check_extention(argv[1]) == 0
 			|| check_map_numeric(&map) == 0)
-			return (print_error(&map), 1);
+			return (free_free(&map), print_error(&map), 1);
 		else
 			return (set_window(&map), free_free(&map), 1);
 	}
