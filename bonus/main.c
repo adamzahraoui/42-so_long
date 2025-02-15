@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:46:11 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/14 14:54:22 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/15 12:30:21 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,13 @@ int	main(int argc, char **argv)
 	map.find_e = 0;
 	map.l3rd = 0;
 	map.tol = 0;
+	map.map_inv = 0;
 	if (argc == 2)
 	{
-		if (check_map(argv[1], &map) == 0 || check_extention(argv[1]) == 0
-			|| check_map_numeric(&map) == 0)
-			return (print_error(&map), free_free(&map), 1);
+		if (check_map(argv[1], &map) == 0 )
+			return (ft_printf("Error: The map contains a newline\n"), 1);
+		if(check_extention(argv[1]) == 0 || check_map_numeric(&map) == 0)
+			return (free_free(&map), print_error(&map), 1);
 		else
 			return (set_window(&map), free_free(&map), 1);
 	}

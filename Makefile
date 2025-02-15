@@ -82,7 +82,6 @@ $(NAME): $(OBJ)
 
 bonus : $(BOBJ)
 	@$(CC) $(CFLAGS) $(BOBJ) $(MFLAGS) -o $(BNAME)
-	@touch bonus
 
 clean:
 	@$(RM) $(OBJ) $(BOBJ)

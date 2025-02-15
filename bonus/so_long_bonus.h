@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:46:17 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/12 15:06:19 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/15 12:00:58 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ typedef struct s_so_long
 
 	int		z;
 	int		w;
+
+	int		map_inv;
 }			t_so_long_check;
 
 char		*get(int fd);

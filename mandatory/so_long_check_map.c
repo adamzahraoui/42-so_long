@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 11:42:44 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/12 11:33:15 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/15 12:38:34 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,12 @@ int	check_walls(char *wals)
 	i = 0;
 	while (wals[i] != '\0' && wals[i] != '\n')
 		i++;
-	if (wals[0] != '1' || wals[i - 1] != '1')
-		return (0);
-	return (1);
+	if(i > 1)
+	{
+		if (wals[0] == '1' && wals[i - 1] == '1')
+			return (1);
+	}
+	return (0);
 }
 
 int	check_wals(char *argv, t_so_long_check *map)
@@ -29,18 +32,18 @@ int	check_wals(char *argv, t_so_long_check *map)
 	char	*str;
 
 	(1) && (map->i = 0, map->fd = open(argv, O_RDONLY), str = get(map->fd));
-	if (!str)
+	if (!str || map->fd < 0)
 		return (close(map->fd), 0);
 	while (str[map->i] != '\0' && str[map->i] != '\n')
 		if (str[map->i++] != '1')
-			return (free(str), close(map->fd), 0);
+			map->map_inv--;
 	free(str);
 	str = get(map->fd);
-	while (str != NULL)
+	while (str)
 	{
 		map->i = 0;
 		if (check_walls(str) == 0)
-			return (free(str), close(map->fd), 0);
+			map->map_inv--;
 		while (str[map->i] == '1' && str[map->i] != '\n' && str[map->i])
 			map->i++;
 		if (str[map->i] == '\0')
@@ -48,9 +51,9 @@ int	check_wals(char *argv, t_so_long_check *map)
 		free(str);
 		str = get(map->fd);
 	}
-	if (map->i == -1)
-		return (free(str), close(map->fd), 1);
-	return (free(str), close(map->fd), 0);
+	if (map->i == -1 && map->map_inv == 0)
+		return (close(map->fd), 1);
+	return (close(map->fd), 0);
 }
 
 int	check_other(char *argv, t_so_long_check *map)
