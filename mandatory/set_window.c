@@ -29,8 +29,10 @@ int	close_map(t_so_long_check *close)
 		mlx_destroy_image(close->mlx, close->coin);
 	if (close->exit != NULL)
 		mlx_destroy_image(close->mlx, close->exit);
-	mlx_destroy_window(close->mlx, close->mlx_win);
-	mlx_destroy_display(close->mlx);
+	if (close->mlx_win)
+		mlx_destroy_window(close->mlx, close->mlx_win);
+	if (close->mlx)
+		mlx_destroy_display(close->mlx);
 	free(close->mlx);
 	free_free(close);
 	exit(0);
@@ -88,14 +90,14 @@ void	declaration(t_so_long_check *map)
 	t_so_long_check	data;
 
 	(1) && (map->move = 1, map->mlx = NULL);
-	map->mlx_win = NULL;
-	map->wall = NULL;
-	map->ground = NULL;
-	map->coin = NULL;
+	(1) && (map->mlx_win = NULL, map->wall = NULL);
+	(1) && (map->ground = NULL, map->coin = NULL);
 	map->player = NULL;
 	map->player_left = NULL;
 	map->exit = NULL;
 	map->mlx = mlx_init();
+	if (!map->mlx)
+		close_map(map);
 	map->mlx_win = mlx_new_window(map->mlx, map->tol * 32, (map->l3rd - 1) * 32,
 			"so_long");
 	map->wall = mlx_xpm_file_to_image(map->mlx, PICTURE_WALL, &data.width,
@@ -118,9 +120,7 @@ void	set_window(t_so_long_check *map)
 	int	y;
 
 	declaration(map);
-	x = 0;
-	y = 0;
-	map->z = 0;
+	(1) && (x = 0, y = 0, map->z = 0);
 	while (map->str[map->z])
 	{
 		map->w = 0;

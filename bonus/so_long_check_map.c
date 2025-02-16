@@ -19,7 +19,7 @@ int	check_walls(char *wals)
 	i = 0;
 	while (wals[i] != '\0' && wals[i] != '\n')
 		i++;
-	if(i > 1)
+	if (i > 1)
 	{
 		if (wals[0] == '1' && wals[i - 1] == '1')
 			return (1);

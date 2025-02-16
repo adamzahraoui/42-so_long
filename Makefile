@@ -71,18 +71,14 @@ BOBJ= $(BSRC:.c=.o)
 all: $(NAME)
 	@echo "$$SO_LONG"
 
-%.o: %.c mandatory/so_long.h
+%.o: %.c mandatory/so_long.h bonus/so_long_bonus.h
 	@$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 $(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) $(MFLAGS) -o $(NAME)
-
-%.o: %.c bonus/so_long_bonus.h
-	@$(CC) $(CFLAGS) -Imlx -c $< -o $@
+	@$(CC) $(CFLAGS) -g $(OBJ) $(MFLAGS) -o $(NAME)
 
 bonus : $(BOBJ)
 	@$(CC) $(CFLAGS) $(BOBJ) $(MFLAGS) -o $(BNAME)
-	@touch bonus
 
 clean:
 	@$(RM) $(OBJ) $(BOBJ)
