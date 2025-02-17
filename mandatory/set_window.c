@@ -61,14 +61,14 @@ int	close_x(t_so_long_check *close)
 
 int	key_press(int keycode, t_so_long_check *data)
 {
+	if (data->str[data->y][data->x] == 'P')
+		data->str[data->y][data->x] = '0';
 	if (keycode == 65307)
 	{
 		ft_printf("ESC pressed. Closing game...\n");
 		close_map(data);
 		exit(0);
 	}
-	if (data->str[data->y][data->x] == 'P')
-		data->str[data->y][data->x] = '0';
 	else if (keycode == 119 || keycode == 65362)
 		up(data);
 	else if (keycode == 100 || keycode == 65363)

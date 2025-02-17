@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 11:42:44 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/15 12:38:34 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/17 20:04:39 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,13 +113,17 @@ int	check_rectangular(char *argv, t_so_long_check *map)
 
 int	check_map(char *argv, t_so_long_check *map)
 {
-	if (check_wals(argv, map) == 1 && check_other(argv, map) == 1
-		&& check_rectangular(argv, map) == 1)
+	if (check_wals(argv, map) == 1)
 	{
-		if (flood_file(argv, map) == 1)
-			return (1);
-		free_free(map);
-		return (0);
+		if (check_other(argv, map) == 1
+			&& check_rectangular(argv, map) == 1)
+		{
+			if (flood_file(argv, map) == 1)
+				return (1);
+			return (ft_printf("Error : no path\n"), print_error(map), 0);
+		}
+		else
+			return (print_error(map), 0);
 	}
-	return (0);
+	return (ft_printf("Error\n"), 0);
 }

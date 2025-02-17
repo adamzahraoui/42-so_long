@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:46:17 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/16 13:58:33 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/17 20:04:18 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,6 @@ int			close_map(t_so_long_check *close);
 void		*free_free(t_so_long_check *map);
 void		set_pic(char c, t_so_long_check *map, int x, int y);
 void		free_free_map(t_so_long_check *map, int i);
+void		print_error(t_so_long_check *map);
 
 #endif

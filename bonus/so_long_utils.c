@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:24:27 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/10 12:14:56 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/17 20:00:07 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,5 @@ int	flood_file(char *argv, t_so_long_check *map)
 	if (position(map->str, map) == 1 && check_path(map->str_copy, map->x,
 			map->y, map) == 1)
 		return (close(map->fd), 1);
-	return (close(map->fd), 0);
+	return (free_free(map), close(map->fd), 0);
 }

@@ -6,7 +6,7 @@
 /*   By: adzahrao <adzahrao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:46:11 by adzahrao          #+#    #+#             */
-/*   Updated: 2025/02/15 14:29:16 by adzahrao         ###   ########.fr       */
+/*   Updated: 2025/02/17 20:04:27 by adzahrao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	check_map_numeric(t_so_long_check *map)
 				&& map->str[y][i] != 'E')
 			{
 				ft_printf("Error :The map contains an unknown item\n");
-				return (0);
+				return (free_free(map), 0);
 			}
 			i++;
 		}
@@ -92,12 +92,12 @@ int	main(int argc, char **argv)
 	map.map_inv = 0;
 	if (argc == 2)
 	{
-		if (check_map(argv[1], &map) == 0)
-			return (ft_printf("Error: The map contains a newline\n"), 1);
-		if (check_extention(argv[1]) == 0 || check_map_numeric(&map) == 0)
-			return (free_free(&map), print_error(&map), 1);
+		if (check_extention(argv[1]) == 0)
+			return (1);
+		if (check_map(argv[1], &map) == 0 || check_map_numeric(&map) == 0)
+			return (1);
 		else
-			return (set_window(&map), free_free(&map), 1);
+			return (set_window(&map), 1);
 	}
 	else
 		printf("Error: select one map\n");
